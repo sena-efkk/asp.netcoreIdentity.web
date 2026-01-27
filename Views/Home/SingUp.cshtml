@@ -1,0 +1,27 @@
+@using asp.netcoreIdentityApp.Web.ViewModels
+@model SignUpViewModel
+
+<Form method="post">
+    <div class="row mb-3">
+        <Label asp-for="UserName" class="col-sm-2 col-form-label"></Label>
+        <input asp-for="UserName" class="form-control" />
+    </div>
+    <div class="row mb-3">
+        <Label asp-for="Email" class="col-sm-2 col-form-label"></Label>
+        <input asp-for="Email" type="email" class="form-control" />
+    </div>
+    <div class="row mb-3">
+        <Label asp-for="Phone" class="col-sm-2 col-form-label"></Label>
+        <input asp-for="Phone" type="number" class="form-control" />
+    </div>
+    <div class="row mb-3">
+        <Label asp-for="Password" class="col-sm-2 col-form-label"></Label>
+        <input asp-for="Password" type="password" class="form-control" />
+    </div><div class="row mb-3">
+        <Label asp-for="PasswordConfirm" class="col-sm-2 col-form-label"></Label>
+        <input asp-for="PasswordConfirm" type="password" class="form-control" />
+    </div>
+    <div class="row mb-3">
+        <input  type="submit" class="btn btn-primary" name="Kaydet"/>
+    </div>
+</Form>

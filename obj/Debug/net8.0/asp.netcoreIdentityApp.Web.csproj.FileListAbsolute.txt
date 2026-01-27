@@ -135,3 +135,4 @@ C:\Users\senas\OneDrive\Desktop\asp.netcore\asp.netcoreIdentityApp.Web\asp.netco
 C:\Users\senas\OneDrive\Desktop\asp.netcore\asp.netcoreIdentityApp.Web\asp.netcoreIdentityApp.Web\obj\Debug\net8.0\asp.netcoreIdentityApp.Web.pdb
 C:\Users\senas\OneDrive\Desktop\asp.netcore\asp.netcoreIdentityApp.Web\asp.netcoreIdentityApp.Web\obj\Debug\net8.0\asp.netcoreIdentityApp.Web.genruntimeconfig.cache
 C:\Users\senas\OneDrive\Desktop\asp.netcore\asp.netcoreIdentityApp.Web\asp.netcoreIdentityApp.Web\obj\Debug\net8.0\ref\asp.netcoreIdentityApp.Web.dll
+C:\Users\senas\OneDrive\Desktop\asp.netcore\asp.netcoreIdentityApp.Web\asp.netcoreIdentityApp.Web\obj\Debug\net8.0\asp.netcoreIdentityApp.Web.sourcelink.json
