@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\asp.netcoreIdentityApp.Web.props" />
+</Project>
