@@ -1,7 +1,13 @@
 @using asp.netcoreIdentityApp.Web.ViewModels
 @model SignUpViewModel
+
+<Form asp-action="SingUp" asp-controller="Home" method="post">
 <h2>Kullanıcı Kayıt Formu</h2>
-<Form method="post">
+    @if(!string.IsNullOrEmpty(ViewBag.SuccessMessage)){
+        <div class="alert alert-info" role="alert">
+            @ViewBag.SuccessMessage
+        </div>
+    }
     <div class="row mb-3">
         <Label asp-for="UserName" class="col-sm-2 col-form-label"></Label>
         <input asp-for="UserName" class="form-control" />
