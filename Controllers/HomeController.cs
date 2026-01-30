@@ -33,12 +33,19 @@ public class HomeController : Controller
     public async Task<IActionResult> SingUp(SignUpViewModel request)
     {
 
+        if (!ModelState.IsValid)
+        {
+          return View(request); 
+        }    
         var identityResult =await _Usermanager.CreateAsync(new() {
-                UserName=request.UserName ,PhoneNumber=request.Phone,Email=request.Email},request.PasswordConfirm);
+            UserName=request.UserName ,PhoneNumber=request.Phone,Email=request.Email},request.PasswordConfirm);
+
+
+
         if (identityResult.Succeeded)
         {
-            ViewBag.SuccessMessage="Üyelik işlemi başarıyla tmamlandı :)";
-            return View();
+            TempData["SuccessMessage"]="Üyelik işlemi başarıyla tmamlandı :)";
+            return RedirectToAction(nameof(HomeController.SingUp));
         }
 
         foreach(IdentityError item in identityResult.Errors)
@@ -46,6 +53,7 @@ public class HomeController : Controller
             ModelState.AddModelError(string.Empty,item.Description);
         }
         return View();
+
     }
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
