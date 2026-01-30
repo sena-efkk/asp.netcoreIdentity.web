@@ -1,4 +1,5 @@
 using asp.netcoreIdentityApp.Web.Models;
+using AspNetCoreIdentityApp.Web.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
@@ -13,21 +14,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(connectionString));
 
 
-builder.Services.AddIdentity<AppUser, AppRole>(options =>
-{
-    options.User.RequireUniqueEmail= true;
-    options.User.AllowedUserNameCharacters ="abcdefghijklmnoprstuvywxz1234567890_";
-
-    options.Password.RequiredLength=6;
-    options.Password.RequireNonAlphanumeric =false;
-    options.Password.RequireLowercase =true;
-    options.Password.RequireUppercase =false;
-    options.Password.RequireDigit =false;
-
-
-
-}).AddEntityFrameworkStores<AppDbContext>();    
-
+builder.Services.AddIdentityWithExt();
 
 var app = builder.Build();
 
