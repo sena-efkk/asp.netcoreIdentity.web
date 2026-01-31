@@ -1,7 +1,7 @@
 using asp.netcoreIdentityApp.Web.Models;
 using Microsoft.AspNetCore.Identity;
 
-namespace AspNetCoreIdentityApp.Web.CustomValidations
+namespace asp.netcoreIdentityApp.Web.CustomValidations
 {
     public class PasswordValidor : IPasswordValidator<AppUser>
     {
