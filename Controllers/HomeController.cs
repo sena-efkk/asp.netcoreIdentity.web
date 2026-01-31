@@ -12,7 +12,7 @@ public class HomeController : Controller
 
     public HomeController(UserManager<AppUser> u)
     {
-        _Usermanager=u;
+        _Usermanager = u;
     }
 
     public IActionResult Index()
@@ -28,6 +28,10 @@ public class HomeController : Controller
     {
         return View();
     }
+    public IActionResult SingIp()
+    {
+        return View();
+    }
 
     [HttpPost]
     public async Task<IActionResult> SingUp(SignUpViewModel request)
@@ -35,22 +39,26 @@ public class HomeController : Controller
 
         if (!ModelState.IsValid)
         {
-          return View(request); 
-        }    
-        var identityResult =await _Usermanager.CreateAsync(new() {
-            UserName=request.UserName ,PhoneNumber=request.Phone,Email=request.Email},request.PasswordConfirm);
+            return View(request);
+        }
+        var identityResult = await _Usermanager.CreateAsync(new()
+        {
+            UserName = request.UserName,
+            PhoneNumber = request.Phone,
+            Email = request.Email
+        }, request.PasswordConfirm);
 
 
 
         if (identityResult.Succeeded)
         {
-            TempData["SuccessMessage"]="Üyelik işlemi başarıyla tmamlandı :)";
+            TempData["SuccessMessage"] = "Üyelik işlemi başarıyla tmamlandı :)";
             return RedirectToAction(nameof(HomeController.SingUp));
         }
 
-        foreach(IdentityError item in identityResult.Errors)
+        foreach (IdentityError item in identityResult.Errors)
         {
-            ModelState.AddModelError(string.Empty,item.Description);
+            ModelState.AddModelError(string.Empty, item.Description);
         }
         return View();
 
