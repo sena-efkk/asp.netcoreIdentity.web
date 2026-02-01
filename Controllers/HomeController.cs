@@ -3,23 +3,25 @@ using Microsoft.AspNetCore.Mvc;
 using asp.netcoreIdentityApp.Web.Models;
 using asp.netcoreIdentityApp.Web.ViewModels;
 using Microsoft.AspNetCore.Identity;
+using asp.netcoreIdentityApp.Web.Extensions;
 
 namespace asp.netcoreIdentityApp.Web.Controllers;
 
 public class HomeController : Controller
 {
     private readonly UserManager<AppUser> _Usermanager;
+    private readonly SignInManager<AppUser> _signInManager;
 
-    public HomeController(UserManager<AppUser> u)
+    public HomeController(UserManager<AppUser> userManager, SignInManager<AppUser> signIn)
     {
-        _Usermanager = u;
+        _Usermanager = userManager;
+        _signInManager = signIn;
     }
 
     public IActionResult Index()
     {
         return View();
     }
-
     public IActionResult Privacy()
     {
         return View();
@@ -28,10 +30,36 @@ public class HomeController : Controller
     {
         return View();
     }
-    public IActionResult SingIp()
+    public IActionResult SignIn()
     {
         return View();
     }
+
+    [HttpPost]
+    public async Task<IActionResult> SignIn(SignInViewModel model, string? returnUrl = null)
+    {
+        returnUrl = returnUrl ?? Url.Action("Index", "Home");
+
+        var hasUser = await _Usermanager.FindByEmailAsync(model.Email);
+
+        if (hasUser == null)
+        {
+            ModelState.AddModelError(string.Empty, "Email veyaşifre yanlış. ");
+            return View();
+        }
+
+        var signInresult = await _signInManager.PasswordSignInAsync(hasUser, model.Password, model.RememberMe, false);
+
+        if (signInresult.Succeeded)
+        {
+            return Redirect(returnUrl);
+        }        
+        ModelState.AddModelErrorList(new List<string>() { "Email veya şifre yanlış." } );
+
+        return View();
+    }
+
+
 
     [HttpPost]
     public async Task<IActionResult> SingUp(SignUpViewModel request)
@@ -56,13 +84,14 @@ public class HomeController : Controller
             return RedirectToAction(nameof(HomeController.SingUp));
         }
 
-        foreach (IdentityError item in identityResult.Errors)
-        {
-            ModelState.AddModelError(string.Empty, item.Description);
-        }
+        ModelState.AddModelErrorList(identityResult.Errors.Select( x => x.Description).ToList());
+
+        
         return View();
 
     }
+
+
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {

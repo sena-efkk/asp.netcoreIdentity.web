@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace asp.netcoreIdentityApp.ViewModels
+namespace asp.netcoreIdentityApp.Web.ViewModels
 {
     public class SignInViewModel
     {

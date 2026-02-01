@@ -1,19 +1,21 @@
-@using asp.netcoreIdentityApp.ViewModels
+@* @using asp.netcoreIdentityApp.Web.ViewModels
 @model SignInViewModel
 
 <h1>SignIn</h1>
 
+
 <div class="row">
     <div class="col-md-4 offset-md-4">
         <form asp-controller="Home" asp-action="SignIn" method="post">
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
             <div class="mb-3">
                 <label asp-for="Email" class="form-label">Email address</label>
-                <input asp-for="Email"" class="form-control" aria-describedby="emailHelp">
+                <input asp-for="Email"" class=" form-control" >
                 <span asp-validation-for="Email" class="form-text"></span>
             </div>
             <div class="mb-3">
                 <label asp-for="Password" class="form-label">Password</label>
-                <input asp-for="Password" class="form-control" >
+                <input asp-for="Password" class="form-control">
                 <span asp-validation-for="Password" class="form-text"></span>
             </div>
             <div class="mb-3 form-check">
@@ -24,4 +26,4 @@
         </form>
 
     </div>
-</div>
+</div>++ *@
