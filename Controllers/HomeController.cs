@@ -48,12 +48,19 @@ public class HomeController : Controller
             return View();
         }
 
-        var signInresult = await _signInManager.PasswordSignInAsync(hasUser, model.Password, model.RememberMe, false);
+        var signInresult = await _signInManager.PasswordSignInAsync(hasUser, model.Password, model.RememberMe, true);
 
         if (signInresult.Succeeded)
         {
             return Redirect(returnUrl);
-        }        
+        }
+
+        if (signInresult.IsLockedOut)
+        {
+            ModelState.AddModelErrorList(new List<string>() { "3 dk sonra tekrar deneyiniz ." } );
+            
+        }
+
         ModelState.AddModelErrorList(new List<string>() { "Email veya şifre yanlış." } );
 
         return View(model);
