@@ -1,4 +1,4 @@
-@* @using asp.netcoreIdentityApp.Web.ViewModels
+@using asp.netcoreIdentityApp.Web.ViewModels
 @model SignInViewModel
 
 <h1>SignIn</h1>
@@ -10,20 +10,20 @@
             <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
             <div class="mb-3">
                 <label asp-for="Email" class="form-label">Email address</label>
-                <input asp-for="Email"" class=" form-control" >
+                <input asp-for="Email" class=" form-control" />
                 <span asp-validation-for="Email" class="form-text"></span>
             </div>
             <div class="mb-3">
                 <label asp-for="Password" class="form-label">Password</label>
-                <input asp-for="Password" class="form-control">
+                <input asp-for="Password" class="form-control"/>
                 <span asp-validation-for="Password" class="form-text"></span>
             </div>
             <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" asp-for="RememberMe">
+                <input type="checkbox" class="form-check-input" asp-for="RememberMe"/>
                 <label class="form-check-label" asp-for="RememberMe"></label>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
 
     </div>
-</div>++ *@
+</div>

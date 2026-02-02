@@ -56,7 +56,7 @@ public class HomeController : Controller
         }        
         ModelState.AddModelErrorList(new List<string>() { "Email veya şifre yanlış." } );
 
-        return View();
+        return View(model);
     }
 
 
@@ -74,7 +74,7 @@ public class HomeController : Controller
             UserName = request.UserName,
             PhoneNumber = request.Phone,
             Email = request.Email
-        }, request.PasswordConfirm);
+        }, request.Password);
 
 
 
@@ -87,7 +87,7 @@ public class HomeController : Controller
         ModelState.AddModelErrorList(identityResult.Errors.Select( x => x.Description).ToList());
 
         
-        return View();
+        return View(request);
 
     }
 
