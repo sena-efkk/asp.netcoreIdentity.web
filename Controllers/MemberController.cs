@@ -12,10 +12,9 @@ namespace asp.netcoreIdentityApp.Web.Controllers
             this._signinM=sm;
         }
 
-        public async Task<IActionResult> Logout()
+        public async Task Logout()
         {
             await  _signinM.SignOutAsync();
-            return RedirectToAction("Index","Home");
         }
     }
     

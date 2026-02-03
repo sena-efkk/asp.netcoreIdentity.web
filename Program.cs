@@ -18,14 +18,14 @@ builder.Services.AddIdentityWithExt();
 
 builder.Services.ConfigureApplicationCookie(opt =>
 {
-   var cookiebuilder =new CookieBuilder();
+    var cookiebuilder = new CookieBuilder();
 
-   cookiebuilder.Name ="UdemyAppCookie";
-   opt.LoginPath=new PathString("/Home/SignIn");
-
-   opt.Cookie=cookiebuilder;
-   opt.ExpireTimeSpan=TimeSpan.FromDays(60);
-   opt.SlidingExpiration=true;
+    cookiebuilder.Name = "UdemyAppCookie";
+    opt.LoginPath = new PathString("/Home/SignIn");
+    opt.LogoutPath =new PathString("/Member/Logout");
+    opt.Cookie = cookiebuilder;
+    opt.ExpireTimeSpan = TimeSpan.FromDays(60);
+    opt.SlidingExpiration = true;
 
 
 
