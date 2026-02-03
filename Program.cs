@@ -20,7 +20,7 @@ builder.Services.ConfigureApplicationCookie(opt =>
 {
    var cookiebuilder =new CookieBuilder();
 
-   cookiebuilder.Name =new PathString("UdemyAppCookie");
+   cookiebuilder.Name ="UdemyAppCookie";
    opt.LoginPath=new PathString("/Home/SignIn");
 
    opt.Cookie=cookiebuilder;
