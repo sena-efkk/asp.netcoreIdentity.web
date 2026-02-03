@@ -57,11 +57,12 @@ public class HomeController : Controller
 
         if (signInresult.IsLockedOut)
         {
-            ModelState.AddModelErrorList(new List<string>() { "3 dk sonra tekrar deneyiniz ." } );
-            
+            ModelState.AddModelErrorList(new List<string>() { "3 dk sonra tekrar deneyiniz ." });
+            return View(model);
+
         }
 
-        ModelState.AddModelErrorList(new List<string>() { "Email veya şifre yanlış." } );
+        ModelState.AddModelErrorList(new List<string>() { "Email veya şifre yanlış." });
 
         return View(model);
     }
@@ -91,9 +92,9 @@ public class HomeController : Controller
             return RedirectToAction(nameof(HomeController.SingUp));
         }
 
-        ModelState.AddModelErrorList(identityResult.Errors.Select( x => x.Description).ToList());
+        ModelState.AddModelErrorList(identityResult.Errors.Select(x => x.Description).ToList());
 
-        
+
         return View(request);
 
     }
