@@ -2,18 +2,25 @@
 {
     <ul class="navbar-nav me-0">
         <li class="nav-item dropdown">
+            
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            @User.Identity.Name </a>
-        </li>
-        <ul>
-            <li><a class="dropdown-item" asp-route-returnurl="/Home/Index" asp-controller="Member" asp-action="Logout">Çıkış yap</a></li>
-            <li><a class="dropdown-item" asp-route-returnurl="/Home/Privacy" asp-controller="Member" asp-action="Logout">Çıkış yap2</a></li>
-        </ul>
+                @User.Identity.Name
+            </a>
+
+            <ul class="dropdown-menu"> 
+                <li>
+                    <a class="dropdown-item" asp-route-returnurl="/Home/Index" asp-controller="Member" asp-action="Logout">Çıkış yap</a>
+                </li>
+                <li>
+                    <a class="dropdown-item" asp-route-returnurl="/Home/Privacy" asp-controller="Member" asp-action="Logout">Çıkış yap2</a>
+                </li>
+            </ul>
+
+        </li> 
     </ul>
 }
 else
 {
     <a class="btn btn-outline-success mx-1" asp-area="" asp-action="SingUp" asp-controller="Home">Üye Ol</a>
     <a class="btn btn-outline-success" asp-area="" asp-action="SignIn" asp-controller="Home">Üye Giriş</a>
-
 }
