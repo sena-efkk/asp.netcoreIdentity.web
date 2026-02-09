@@ -35,6 +35,33 @@ public class HomeController : Controller
         return View();
     }
 
+    public IActionResult ForgetPassword()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> ForgetPassword(ForgetPasswordViewModel request)
+    {
+        var hasUser =await _Usermanager.FindByEmailAsync(request.Email);
+
+        if(hasUser == null)
+        {
+            ModelState.AddModelError(string.Empty,"Bu email adresine sahip kullanıcı bulunamamıştır.");
+            return View();
+
+        }
+        string passwordResetToken = await _Usermanager.GeneratePasswordResetTokenAsync(hasUser);
+
+        var passwordResetLink = Url.Action("ResetPassword","Home",new {userId = hasUser.Id , Token =passwordResetToken});
+    
+        //email service de kaldık
+        TempData["Success"]="Şifre yenileme linki, eposta adresinize gönderilmiştir";
+
+        return RedirectToAction(nameof(ForgetPassword));
+    }
+
+
     [HttpPost]
     public async Task<IActionResult> SignIn(SignInViewModel model, string? returnUrl = null)
     {

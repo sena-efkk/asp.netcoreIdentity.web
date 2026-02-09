@@ -1,5 +1,6 @@
 using asp.netcoreIdentityApp.Web.Models;
 using AspNetCoreIdentityApp.Web.Extensions;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 

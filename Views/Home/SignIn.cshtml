@@ -1,12 +1,16 @@
 @using asp.netcoreIdentityApp.Web.ViewModels
 @model SignInViewModel
 
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
 <h1>SignIn</h1>
 
 
 <div class="row">
     <div class="col-md-4 offset-md-4">
-        <form asp-controller="Home" asp-action="SignIn" asp-route-retturnUrl="@Context.Request.Query["returnURL"]" method="post">
+        <form asp-controller="Home" asp-action="SignIn" asp-route-retturnUrl="@Context.Request.Query["returnURL"]"
+            method="post">
             <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
             <div class="mb-3">
                 <label asp-for="Email" class="form-label">Email address</label>
@@ -15,14 +19,26 @@
             </div>
             <div class="mb-3">
                 <label asp-for="Password" class="form-label">Password</label>
-                <input asp-for="Password" class="form-control"/>
+                <input asp-for="Password" class="form-control" />
                 <span asp-validation-for="Password" class="form-text"></span>
             </div>
-            <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" asp-for="RememberMe"/>
-                <label class="form-check-label" asp-for="RememberMe"></label>
+
+            <div class="row ">
+                <div class="col-md-6">
+
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" asp-for="RememberMe" />
+                        <label class="form-check-label" asp-for="RememberMe"></label>
+                    </div>
+                </div>
+                <div class="col-md-6 ">
+                        <a class="btn btn-outline-secondary float-end" asp-controller="Home" asp-action="ForgetPassword">Şifremi unuttum</a>
+                </div>
             </div>
+
             <button type="submit" class="btn btn-primary">Submit</button>
+
+
         </form>
 
     </div>
